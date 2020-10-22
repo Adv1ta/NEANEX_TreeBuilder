@@ -1,38 +1,62 @@
 .App {
-  text-align: center;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: calc(5px + 1vmin);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Main {
+  margin-right: 4em;
+  margin-left: 4em;
+}
+
+.InputBox {
+  /* width: 10vw; */
+  margin-bottom: 1em;
+  margin-top: 1em;
+  background-color: rgba(211, 211, 211, 0.5);
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid#172B4D; */
+  border-radius: 0.5em;
+}
+
+.Input {
+  width: 10vw;
+  /* min-width: 3cm; */
+  margin: 1em;
+  /* border: 2px solid black;
+  border-radius: 0.3em; */
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: #282c34;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
 }
