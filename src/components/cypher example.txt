@@ -1,0 +1,31 @@
+{"objectQuery":"MATCH (po:PhysicalObject {isDeleted: false}) WHERE 
+(
+    (
+    (po {annotation: 'Object',lifeCycleStage: 'Type'})
+    <-[:IS_DEPENDENT_ON]-
+    (:PhysicalObject {annotation: 'Object'})
+    ) 
+OR 
+    (
+    (po {annotation: 'Object'})
+    -[:IS_DEPENDENT_ON]->
+    (:PhysicalObject {annotation: 'Object',lifeCycleStage: 'Type'})
+    ) 
+OR 
+    (
+    (po {annotation: 'Object',lifeCycleStage: 'Type'})
+    -[:IS_DECOMPOSED_IN]->
+    (:PhysicalObject {annotation: 'Object',lifeCycleStage:'Type'})
+    ) 
+OR 
+    (
+    (po {annotation: 'Object',lifeCycleStage:'Type'})
+    <-[:IS_DECOMPOSED_IN]-
+    (:PhysicalObject {annotation: 'Object',lifeCycleStage: 'Type'})
+    ) 
+OR 
+    (po.annotation = 'Object' AND po.lifeCycleStage = 'Type')
+) 
+OPTIONAL MATCH (po)-[]->(ls:LifeCycleStage) 
+OPTIONAL MATCH (po)-[]->(a:Annotation) 
+RETURN { id: po.id,  externalId: po.externalId, name: po.name, type: po.type, code: po.code, annotation: a.viewValue, lifecyclestage: ls.viewValue}", "relationQuery": "MATCH (parent:PhysicalObject)<-[r:IS_DEPENDENT_ON]-(child:PhysicalObject) WHERE (parent.lifeCycleStage = 'Type') RETURN DISTINCT { type: TYPE(r), parentId: parent.id, childId: child.id } UNION MATCH (parent:PhysicalObject)-[r:IS_DECOMPOSED_IN]->(child:PhysicalObject) WHERE (parent.lifeCycleStage = 'Type' AND child.lifeCycleStage = 'Type') RETURN DISTINCT { type: TYPE(r), parentId: parent.id, childId: child.id }"}

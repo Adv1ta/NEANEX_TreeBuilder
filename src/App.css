@@ -10,14 +10,30 @@
 }
 
 .Main {
-  margin-right: 4em;
-  margin-left: 4em;
+  position: fixed;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  height: 80vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.Result {
+  margin-right: 3vw;
+  margin-left: 3vw;
+  margin-top: 1vh;
+  margin-bottom: 6vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .InputBox {
   /* width: 10vw; */
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-bottom: 4vh;
+  margin-top: 4vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
   background-color: rgba(211, 211, 211, 0.5);
   height: 10vh;
   display: flex;
@@ -28,6 +44,12 @@
   border-radius: 0.5em;
 }
 
+.AddReset {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-bottom: 2vh;
+}
+
 .Input {
   width: 10vw;
   /* min-width: 3cm; */
@@ -36,15 +58,19 @@
   border-radius: 0.3em; */
 }
 
+.Selection {
+  width: 10vw;
+  /* border: 2px solid black;
+  border-radius: 0.3em; */
+}
+
 .App-header {
-  background-color: #282c34;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: calc(10px + 2vmin);
+  background-color: #282c34;
   color: white;
 }
 
@@ -56,7 +82,4 @@
   height: 10vh;
   background-color: #282c34;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
 }

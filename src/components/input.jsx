@@ -16,16 +16,32 @@ class Input extends Component {
           />
         </div>
         <div className="Input">
-          <LifeCycleSelect />
+          <LifeCycleSelect
+            onChange={onChange}
+            rowIndex={rowIndex}
+            fieldName="lifecycle1"
+          />
         </div>
         <div className="Input">
-          <RelationSelect />
+          <RelationSelect
+            onChange={onChange}
+            rowIndex={rowIndex}
+            fieldName="relation"
+          />
         </div>
         <div className="Input">
-          <AnnotationSelect onChange={onChange} rowIndex={rowIndex} />
+          <AnnotationSelect
+            onChange={onChange}
+            rowIndex={rowIndex}
+            fieldName="annotation2"
+          />
         </div>
         <div className="Input">
-          <LifeCycleSelect />
+          <LifeCycleSelect
+            onChange={onChange}
+            rowIndex={rowIndex}
+            fieldName="lifecycle2"
+          />
         </div>
         <button
           onClick={() => this.props.onDelete(this.props.input.id)}

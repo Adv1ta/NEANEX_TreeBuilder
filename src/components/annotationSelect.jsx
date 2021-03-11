@@ -39,10 +39,6 @@ const formatGroupLabel = (data) => (
 );
 
 class OnSelectInput extends Component {
-  state = {
-    inputValue: "",
-  };
-
   render() {
     return (
       <Select

@@ -14,16 +14,23 @@ const initState = {
       relation: "",
     },
   ],
+  output: "Result",
 };
-/*const queryResult = "Query: ";*/
 
 class App extends Component {
   state = initState;
 
+  handleReset = () => {
+    console.log(initState);
+    this.setState(initState);
+  };
+
   handleChange = (inputValue, rowIndex, fieldName) => {
     const inputs = [...this.state.inputs];
     inputs[rowIndex][fieldName] = inputValue.value;
+    console.log(initState);
     this.setState({ inputs });
+    console.log(initState);
   };
 
   handleAdd = () => {
@@ -47,26 +54,60 @@ class App extends Component {
     this.setState({ inputs });
   };
 
-  handleReset = () => {
-    this.setState(initState);
+  handleResult = () => {
+    const inputs = [...this.state.inputs];
+
+    let objectQ = "";
+    let relationQ = "";
+
+    //Object query is built here
+    for (let i = 0; i < inputs.length; i++) {
+      console.log(inputs[i].annotation1);
+      if (i >= 1) {
+        objectQ += " OR ";
+      }
+      objectQ +=
+        "((po {annotation: '" +
+        inputs[i].annotation1 +
+        "',lifeCycleStage: '" +
+        inputs[i].lifecycle1 +
+        "'})-[:" +
+        inputs[i].relation +
+        "]->(:PhysicalObject{annotation:'" +
+        inputs[i].annotation2 +
+        "',lifeCycleStage: '";
+    }
+
+    const output =
+      '"MATCH (po:PhysicalObject{isDeleted:False}) WHERE (' +
+      objectQ +
+      ')OPTIONAL MATCH (po)-[]->(ls:LifeCycleStage) OPTIONAL MATCH (po)-[]->(a:Annotation) RETURN { id: po.id,  externalId: po.externalId, name: po.name, type: po.type, code: po.code, annotation: a.viewValue, lifecyclestage: ls.viewValue}"' +
+      relationQ;
+
+    this.setState({ output });
   };
 
   render() {
-    console.log(this.state.inputs);
     return (
       <body className="App">
         <h1 className="App-header">QUERY BUILDER</h1>
         <main className="Main">
           <Inputs
+            onChange={this.handleChange}
             inputs={this.state.inputs}
             onAdd={this.handleAdd}
             onDelete={this.handleDelete}
             onReset={this.handleReset}
-            onChange={this.handleChange}
           />
         </main>
         <div className="App-footer">
-          Query: {this.state.inputs[0].annotation1}
+          <button
+            onClick={this.handleResult}
+            className="btn btn-warning btn-lg"
+          >
+            >
+          </button>
+          <div>{this.state.output}</div>
         </div>
       </body>
     );

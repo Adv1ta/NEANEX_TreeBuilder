@@ -26,7 +26,7 @@ export const lifeCycleOptions = [
 ];
 
 export const relationOptions = [
-  { value: "is a result of", label: "is a result of" },
+  { value: "IS_DEPENDENT_ON", label: "IS_DEPENDENT_ON" },
   { value: "results in", label: "results in" },
   { value: "is a location for", label: "is a location for" },
   { value: "is located in", label: "is located in" },
